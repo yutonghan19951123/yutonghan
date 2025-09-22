@@ -9,16 +9,9 @@ interface LinkLike {
   [key: string]: unknown
 }
 
-defineProps<{ link: LinkLike }>()
+const { link } = defineProps<{ link: LinkLike }>()
 
-type CopyTooltipProps = {
-  text: string
-  copyText: string
-  ariaLabel: string
-}
-
-// Build a camelCase props object for <CopyTooltip>
-const tooltipProps = computed<CopyTooltipProps>(() => ({
+const tooltipProps = computed(() => ({
   text: String(getTooltipText(link)),
   copyText: String(link?.account ?? link?.to ?? ''),
   ariaLabel: String(link?.ariaLabel ?? '')
