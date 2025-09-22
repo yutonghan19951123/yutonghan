@@ -74,14 +74,15 @@
           <div
             class="flex text-xs text-muted items-center justify-center gap-2"
           >
-            <span v-if="page.date">
-              {{ formatDate(page.date) }}
+            <span v-if="(page as any).date">
+              {{ formatDate((page as any).date) }}
             </span>
-            <span v-if="page.date && page.minRead"> - </span>
-            <span v-if="page.minRead"> {{ page.minRead }} MIN READ </span>
+            <span v-if="(page as any).date && (page as any).minRead"> - </span>
+            <span v-if="(page as any).minRead"> {{ (page as any).minRead }} MIN READ </span>
           </div>
           <img
-            :src="page.image"
+            v-if="(page as any).image"
+            :src="(page as any).image"
             :alt="page.title"
             class="rounded-lg w-full h-[300px] object-cover object-center"
           />
@@ -94,22 +95,22 @@
           <div class="flex items-center justify-center gap-2 mt-2">
             <div class="flex flex-col items-center text-center">
               <img
-                v-if="page.author?.avatar"
-                :src="page.author.avatar"
-                :alt="page.author?.name"
+                v-if="(page as any).author?.avatar"
+                :src="(page as any).author.avatar"
+                :alt="(page as any).author?.name"
                 class="w-12 h-12 rounded-full mb-2"
               />
               <div
-                v-if="page.author?.name"
+                v-if="(page as any).author?.name"
                 class="text-sm font-medium text-gray-900 dark:text-white"
               >
-                {{ page.author.name }}
+                {{ (page as any).author.name }}
               </div>
               <div
-                v-if="page.author?.description"
+                v-if="(page as any).author?.description"
                 class="text-xs text-gray-500 dark:text-gray-400"
               >
-                {{ page.author.description }}
+                {{ (page as any).author.description }}
               </div>
             </div>
           </div>
@@ -136,23 +137,23 @@
             />
           </div>
 
-          <div v-if="surround" class="mt-8">
+          <div v-if="surround && surround.length > 0" class="mt-8">
             <div class="flex items-center justify-between">
-              <div v-if="surround.prev" class="flex-1">
+              <div v-if="surround[0]?.prev" class="flex-1">
                 <ULink
-                  :to="surround.prev._path"
+                  :to="(surround[0].prev as any)._path"
                   class="flex items-center gap-2 text-sm"
                 >
                   <UIcon name="lucide:chevron-left" />
-                  {{ surround.prev.title }}
+                  {{ (surround[0].prev as any).title }}
                 </ULink>
               </div>
-              <div v-if="surround.next" class="flex-1 text-right">
+              <div v-if="surround[0]?.next" class="flex-1 text-right">
                 <ULink
-                  :to="surround.next._path"
+                  :to="(surround[0].next as any)._path"
                   class="flex items-center gap-2 text-sm justify-end"
                 >
-                  {{ surround.next.title }}
+                  {{ (surround[0].next as any).title }}
                   <UIcon name="lucide:chevron-right" />
                 </ULink>
               </div>
