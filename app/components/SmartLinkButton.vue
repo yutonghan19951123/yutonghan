@@ -12,7 +12,7 @@
   <CopyTooltip
     :text="getTooltipText(link)"
     :copy-text="link?.account ?? link.to"
-    :aria-label="link['aria-label'] ?? ''"
+    :aria-label="link['arialabel'] ?? ''"
   >
     <UButton
       v-bind="{
