@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { handleLinkClick, getTooltipText } from '~/utils/linkHandlers'
 
 interface LinkLike {
@@ -8,17 +9,24 @@ interface LinkLike {
   [key: string]: unknown
 }
 
-defineProps<{
-  link: LinkLike
-}>()
+defineProps<{ link: LinkLike }>()
+
+type CopyTooltipProps = {
+  text: string
+  copyText: string
+  ariaLabel: string
+}
+
+// Build a camelCase props object for <CopyTooltip>
+const tooltipProps = computed<CopyTooltipProps>(() => ({
+  text: String(getTooltipText(link)),
+  copyText: String(link?.account ?? link?.to ?? ''),
+  ariaLabel: String(link?.ariaLabel ?? '')
+}))
 </script>
 
 <template>
-  <CopyTooltip
-    :text="String(getTooltipText(link))"
-    :copy-text="String(link?.account ?? link?.to ?? '')"
-    :aria-label="String(link?.ariaLabel ?? '')"
-  >
+  <CopyTooltip v-bind="tooltipProps">
     <UButton
       v-bind="{
         size: 'xs',
