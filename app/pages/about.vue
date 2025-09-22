@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import type { TimelineItem } from '@nuxt/ui'
-  import { handleLinkClick, getTooltipText } from '~/utils/linkHandlers'
+  import { handleLinkClick } from '~/utils/linkHandlers'
 
   const { data: page } = await useAsyncData('about', () => {
     return queryCollection('about').first()
