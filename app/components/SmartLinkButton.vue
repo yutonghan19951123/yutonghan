@@ -8,7 +8,7 @@ interface LinkLike {
   [key: string]: unknown
 }
 
-const props = defineProps<{
+defineProps<{
   link: LinkLike
 }>()
 </script>
