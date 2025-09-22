@@ -160,11 +160,11 @@
               :key="link['arialabel']"
               class="group"
             >
-              <CopyTooltip
-                :text="getTooltipText(link)"
-                :copy-text="link?.account ?? link.to"
-                :arialabel="link['arialabel'] ?? ''"
-              >
+              <CopyTooltip v-bind="{
+                text: String(someText),
+                copyText: String(maybeAny ?? ''),
+                ariaLabel: String(maybeAny ?? '')
+              }" />
                 <UCard
                   class="h-full transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer border border-gray-200 dark:border-gray-700"
                   @click="handleLinkClick(link)"
