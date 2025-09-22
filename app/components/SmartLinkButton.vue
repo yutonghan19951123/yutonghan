@@ -1,18 +1,23 @@
 <script setup lang="ts">
-  import { handleLinkClick, getTooltipText } from '~/utils/linkHandlers'
+import { handleLinkClick, getTooltipText } from '~/utils/linkHandlers'
 
-  interface Props {
-    link: any
-  }
+interface LinkLike {
+  to?: string
+  account?: string
+  ariaLabel?: string
+  [key: string]: unknown
+}
 
-  defineProps<Props>()
+const props = defineProps<{
+  link: LinkLike
+}>()
 </script>
 
 <template>
   <CopyTooltip
-    :text="getTooltipText(link)"
-    :copy-text="link?.account ?? link.to"
-    :arialabel="link['arialabel'] ?? ''"
+    :text="String(getTooltipText(link))"
+    :copy-text="String(link?.account ?? link?.to ?? '')"
+    :aria-label="String(link?.ariaLabel ?? '')"
   >
     <UButton
       v-bind="{
