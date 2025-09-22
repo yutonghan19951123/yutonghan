@@ -157,13 +157,13 @@
           >
             <div
               v-for="link in footer?.links"
-              :key="link['aria-label']"
+              :key="link['arialabel']"
               class="group"
             >
               <CopyTooltip
                 :text="getTooltipText(link)"
                 :copy-text="link?.account ?? link.to"
-                :aria-label="link['aria-label'] ?? ''"
+                :arialabel="link['arialabel'] ?? ''"
               >
                 <UCard
                   class="h-full transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer border border-gray-200 dark:border-gray-700"
@@ -185,7 +185,7 @@
                         class="font-semibold text-gray-900 dark:text-white mb-1 text-sm"
                       >
                         {{
-                          link['aria-label']
+                          link['arialabel']
                             ?.replace(' address', '')
                             .replace(' ID', '')
                         }}
